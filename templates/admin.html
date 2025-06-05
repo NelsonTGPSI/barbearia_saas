@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel de Administração</title>
+</head>
+<body>
+    <h2>Agendamentos - {{ empresa }}</h2>
+    <a href="/logout">Terminar Sessão</a>
+    <table border="1">
+        <tr>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Serviço</th>
+            <th>Barbeiro</th>
+            <th>Data</th>
+            <th>Hora</th>
+        </tr>
+        {% for ag in agendamentos %}
+        <tr>
+            <td>{{ ag.nome }}</td>
+            <td>{{ ag.telefone }}</td>
+            <td>{{ ag.servico }}</td>
+            <td>{{ ag.barbeiro }}</td>
+            <td>{{ ag.data }}</td>
+            <td>{{ ag.hora }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
