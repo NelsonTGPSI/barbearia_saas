@@ -44,7 +44,7 @@ inicializar_db()
 
 @app.route("/")
 def index():
-    return "O sistema está ativo. A zona de agendamento funciona via POST para /agendar."
+    return render_template("index.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
