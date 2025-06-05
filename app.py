@@ -98,3 +98,6 @@ def agendar():
     cur.close()
     conn.close()
     return "Agendamento recebido com sucesso!"
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
