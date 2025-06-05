@@ -38,6 +38,9 @@ def inicializar_db():
     conn.close()
 
 inicializar_db()
+@app.route('/saúdez')
+def health_check():
+    return "OK", 200
 
 @app.route("/")
 def index():
