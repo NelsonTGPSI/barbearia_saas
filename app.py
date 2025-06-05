@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, redirect, session, url_for
 from flask_session import Session
 import psycopg2
@@ -14,14 +13,12 @@ app.secret_key = os.environ.get("SECRET_KEY", "supersegura")
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-# Conexão com a base de dados PostgreSQL (Render fornece URI em variável de ambiente DATABASE_URL)
+# Conexão com a base de dados PostgreSQL
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 def get_db_connection():
-    conn = psycopg2.connect(DATABASE_URL)
-    return conn
+    return psycopg2.connect(DATABASE_URL)
 
-# Criar tabela se não existir
 def inicializar_db():
     conn = get_db_connection()
     cur = conn.cursor()
@@ -98,13 +95,15 @@ def agendar():
     cur.close()
     conn.close()
     return "Agendamento recebido com sucesso!"
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+
 # Teste de conexão com o banco
 try:
-    conn = psycopg2.connect(os.getenv('DATABASE_URL'))
-    print("✅ Conexão com o banco estabelecida!")
+    conn = psycopg2.connect(DATABASE_URL)
+    print("\u2705 Conexão com o banco estabelecida!")
     conn.close()
 except Exception as e:
     print(f"❌ Falha na conexão: {e}")
+
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
