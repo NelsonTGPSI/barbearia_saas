@@ -101,3 +101,10 @@ def agendar():
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
+# Teste de conexão com o banco
+try:
+    conn = psycopg2.connect(os.getenv('DATABASE_URL'))
+    print("✅ Conexão com o banco estabelecida!")
+    conn.close()
+except Exception as e:
+    print(f"❌ Falha na conexão: {e}")
