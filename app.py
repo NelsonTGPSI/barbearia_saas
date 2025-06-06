@@ -16,7 +16,6 @@ app.secret_key = os.environ.get("SECRET_KEY", "supersegura")
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-# Conexão com a base de dados PostgreSQL
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 def get_db_connection():
@@ -124,13 +123,16 @@ def agendar():
         traceback.print_exc()
         return "Erro no agendamento", 500
 
-# Teste de conexão com o banco
+@app.route("/healthz")
+def health_check():
+    return "ok", 200
+
 try:
     conn = psycopg2.connect(DATABASE_URL)
     print("\u2705 Conexão com o banco estabelecida!")
     conn.close()
 except Exception as e:
-    print(f"❌ Falha na conexão: {e}")
+    print(f"\u274c Falha na conexão: {e}")
     traceback.print_exc()
 
 if __name__ == '__main__':
