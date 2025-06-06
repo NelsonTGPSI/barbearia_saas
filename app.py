@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, url_for
+from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
 import psycopg2
 import os
@@ -39,9 +39,9 @@ def inicializar_db():
         conn.commit()
         cur.close()
         conn.close()
-        print("\u2705 Tabela verificada ou criada.")
+        print("✅ Tabela verificada ou criada.")
     except Exception as e:
-        print("\u274c Erro ao inicializar DB:", e)
+        print("❌ Erro ao inicializar DB:", e)
         traceback.print_exc()
 
 inicializar_db()
@@ -51,7 +51,7 @@ def index():
     try:
         return render_template("index.html")
     except Exception as e:
-        print("\u274c Erro ao renderizar index.html:", e)
+        print("❌ Erro ao renderizar index.html:", e)
         traceback.print_exc()
         return "Erro ao carregar página inicial", 500
 
@@ -68,7 +68,7 @@ def login():
                 return render_template("login.html", error="Credenciais inválidas.")
         return render_template("login.html")
     except Exception as e:
-        print("\u274c Erro no login:", e)
+        print("❌ Erro no login:", e)
         traceback.print_exc()
         return "Erro no login", 500
 
@@ -93,7 +93,7 @@ def admin():
         conn.close()
         return render_template("admin.html", agendamentos=agendamentos, empresa=config["empresa"])
     except Exception as e:
-        print("\u274c Erro na página admin:", e)
+        print("❌ Erro na página admin:", e)
         traceback.print_exc()
         return "Erro ao carregar painel admin", 500
 
@@ -108,8 +108,23 @@ def agendar():
             "data": request.form["date"],
             "hora": request.form["time"]
         }
+
         conn = get_db_connection()
         cur = conn.cursor()
+
+        # Verificar se já há agendamento para este barbeiro, data e hora
+        cur.execute(
+            "SELECT COUNT(*) FROM agendamentos WHERE barbeiro = %s AND data = %s AND hora = %s",
+            (dados["barbeiro"], dados["data"], dados["hora"])
+        )
+        conflito = cur.fetchone()[0]
+
+        if conflito > 0:
+            cur.close()
+            conn.close()
+            return render_template("erro.html", mensagem=f"O barbeiro {dados['barbeiro']} já está agendado para {dados['hora']} no dia {dados['data']}. Por favor, escolha outro horário.")
+
+        # Se não houver conflito, guardar no banco
         cur.execute(
             "INSERT INTO agendamentos (nome, telefone, servico, barbeiro, data, hora) VALUES (%s, %s, %s, %s, %s, %s)",
             (dados["nome"], dados["telefone"], dados["servico"], dados["barbeiro"], dados["data"], dados["hora"])
@@ -117,9 +132,11 @@ def agendar():
         conn.commit()
         cur.close()
         conn.close()
-        return "Agendamento recebido com sucesso!"
+
+        return render_template("confirmacao.html", dados=dados)
+
     except Exception as e:
-        print("\u274c Erro no agendamento:", e)
+        print("❌ Erro no agendamento:", e)
         traceback.print_exc()
         return "Erro no agendamento", 500
 
@@ -127,12 +144,13 @@ def agendar():
 def health_check():
     return "ok", 200
 
+# Testar a ligação ao banco
 try:
     conn = psycopg2.connect(DATABASE_URL)
-    print("\u2705 Conexão com o banco estabelecida!")
+    print("✅ Conexão com o banco estabelecida!")
     conn.close()
 except Exception as e:
-    print(f"\u274c Falha na conexão: {e}")
+    print(f"❌ Falha na conexão: {e}")
     traceback.print_exc()
 
 if __name__ == '__main__':
