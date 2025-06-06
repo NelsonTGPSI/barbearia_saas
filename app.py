@@ -1,13 +1,15 @@
 from flask import Flask, render_template, request, redirect, session, url_for
 from flask_session import Session
 import psycopg2
-import json
 import os
 import traceback
 
-# Carregar configurações
-with open("config.json") as f:
-    config = json.load(f)
+# Carregar configurações via variáveis de ambiente
+config = {
+    "admin_user": os.environ.get("ADMIN_USER", "admin"),
+    "admin_pass": os.environ.get("ADMIN_PASS", "123456"),
+    "empresa": os.environ.get("EMPRESA", "Corte & Estilo")
+}
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "supersegura")
