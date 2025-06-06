@@ -6,8 +6,8 @@ import traceback
 
 # Carregar configurações via variáveis de ambiente
 config = {
-    "admin_user": os.environ.get("ADMIN_USER", "admin"),
-    "admin_pass": os.environ.get("ADMIN_PASS", "123456"),
+    "admin_user": os.environ.get("ADMIN_USER", "NELSONBSEBASTIAO0"),
+    "admin_pass": os.environ.get("ADMIN_PASS", "123456789"),
     "empresa": os.environ.get("EMPRESA", "Corte & Estilo")
 }
 
