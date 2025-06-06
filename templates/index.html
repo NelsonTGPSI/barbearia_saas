@@ -202,7 +202,7 @@
 <div class="text-center mb-6">
 <i class="fas fa-cut text-accent text-4xl mb-4"></i>
 <h3 class="text-2xl font-heading mb-2">CORTE CLÁSSICO</h3>
-<p class="text-lg text-accent font-bold">R$ 60,00</p>
+<p class="text-lg text-accent font-bold">€ 60,00</p>
 </div>
 <p class="mb-4">Corte de cabelo tradicional com tesoura, máquina ou combinação, finalizado com minuciosos detalhes para um visual impecável.</p>
 <div class="flex justify-between items-center">
@@ -214,7 +214,7 @@
 <div class="text-center mb-6">
 <i class="fas fa-male text-accent text-4xl mb-4"></i>
 <h3 class="text-2xl font-heading mb-2">BARBA TERAPÊUTICA</h3>
-<p class="text-lg text-accent font-bold">R$ 50,00</p>
+<p class="text-lg text-accent font-bold">€ 50,00</p>
 </div>
 <p class="mb-4">Modelagem e tratamento completo para barba com óleos essenciais, massagem relaxante e toalha quente para abrir os poros.</p>
 <div class="flex justify-between items-center">
@@ -226,7 +226,7 @@
 <div class="text-center mb-6">
 <i class="fas fa-crown text-accent text-4xl mb-4"></i>
 <h3 class="text-2xl font-heading mb-2">PACOTE COMPLETO</h3>
-<p class="text-lg text-accent font-bold">R$ 95,00</p>
+<p class="text-lg text-accent font-bold">€ 95,00</p>
 </div>
 <p class="mb-4">A experiência definitiva: corte de cabelo premium, modelagem de barba com tratamento, limpeza de pele e finalização com produtos exclusivos.</p>
 <div class="flex justify-between items-center">
@@ -238,7 +238,7 @@
 <div class="text-center mb-6">
 <i class="fas fa-spa text-accent text-4xl mb-4"></i>
 <h3 class="text-2xl font-heading mb-2">TRATAMENTO CAPILAR</h3>
-<p class="text-lg text-accent font-bold">R$ 75,00</p>
+<p class="text-lg text-accent font-bold">€ 75,00</p>
 </div>
 <p class="mb-4">Hidratação profunda, reconstrução ou cauterização para recuperar a saúde dos fios, com produtos profissionais de alta performance.</p>
 <div class="flex justify-between items-center">
@@ -250,7 +250,7 @@
 <div class="text-center mb-6">
 <i class="fas fa-magic text-accent text-4xl mb-4"></i>
 <h3 class="text-2xl font-heading mb-2">COLORAÇÃO PREMIUM</h3>
-<p class="text-lg text-accent font-bold">R$ 120,00</p>
+<p class="text-lg text-accent font-bold">€ 120,00</p>
 </div>
 <p class="mb-4">Técnicas avançadas de coloração para homens, incluindo mechas, sombreamento ou cobertura de brancos, com produtos de marcas premium.</p>
 <div class="flex justify-between items-center">
@@ -262,7 +262,7 @@
 <div class="text-center mb-6">
 <i class="fas fa-gift text-accent text-4xl mb-4"></i>
 <h3 class="text-2xl font-heading mb-2">PROMOÇÃO ANIVERSÁRIO</h3>
-<p class="text-lg text-accent font-bold">R$ 45,00</p>
+<p class="text-lg text-accent font-bold">€ 45,00</p>
 </div>
 <p class="mb-4">No seu mês de aniversário, ganhe 25% de desconto em qualquer serviço. Presenteie-se com um novo visual!</p>
 <div class="flex justify-between items-center">
@@ -362,7 +362,7 @@
 <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
 <div>
 <h4 class="font-bold">Programa Fidelidade</h4>
-<p>A cada 10 serviços, ganhe 1 cortesia. Basta informar seu CPF no agendamento.</p>
+<p>A cada 10 serviços, ganhe 1 cortesia. Basta informar seu NIF no agendamento.</p>
 </div>
 </li>
 <li class="flex items-start">
@@ -390,11 +390,11 @@
 <label class="block text-sm font-medium mb-1" for="service">Serviço *</label>
 <select class="w-full px-4 py-2 rounded bg-primary border border-gray-600 focus:border-accent focus:outline-none" id="service" name="service" required="">
 <option disabled="" selected="" value="">Selecione um serviço</option>
-<option value="Corte Clássico">Corte Clássico - R$ 60,00</option>
-<option value="Barba Terapêutica">Barba Terapêutica - R$ 50,00</option>
-<option value="Pacote Completo">Pacote Completo - R$ 95,00</option>
-<option value="Tratamento Capilar">Tratamento Capilar - R$ 75,00</option>
-<option value="Coloração Premium">Coloração Premium - R$ 120,00</option>
+<option value="Corte Clássico">Corte Clássico - € 60,00</option>
+<option value="Barba Terapêutica">Barba Terapêutica - € 50,00</option>
+<option value="Pacote Completo">Pacote Completo - € 95,00</option>
+<option value="Tratamento Capilar">Tratamento Capilar - € 75,00</option>
+<option value="Coloração Premium">Coloração Premium - € 120,00</option>
 </select>
 </div>
 <div>
@@ -412,12 +412,50 @@
 <input class="w-full px-4 py-2 rounded bg-primary border border-gray-600 focus:border-accent focus:outline-none" id="date" min="" name="date" required="" type="date"/>
 </div>
 <div>
-
-<label class="block text-sm font-medium mb-1" for="time">Horário *</label>
-<input type="time" id="time" name="time" required class="w-full px-4 py-2 rounded bg-primary border border-gray-600 focus:border-accent focus:outline-none"/>
+  <label class="block text-sm font-medium mb-1" for="time">Horário *</label>
+  <select id="time" name="time" required disabled
+    class="w-full px-4 py-2 rounded bg-primary border border-gray-600 focus:border-accent focus:outline-none">
+    <option value="">Escolha primeiro a data</option>
+  </select>
+</div>
 
 </div>
-</div>
+<script>
+  // Define a data mínima (amanhã)
+  const hoje = new Date();
+  const amanha = new Date(hoje);
+  amanha.setDate(hoje.getDate() + 1);
+
+  const dd = String(amanha.getDate()).padStart(2, '0');
+  const mm = String(amanha.getMonth() + 1).padStart(2, '0');
+  const yyyy = amanha.getFullYear();
+
+  const dataMinima = `${yyyy}-${mm}-${dd}`;
+  document.getElementById('date').min = dataMinima;
+
+  // Quando a data for selecionada, gera os horários
+  document.getElementById('date').addEventListener('change', function () {
+    const timeSelect = document.getElementById('time');
+    timeSelect.disabled = false;
+    timeSelect.innerHTML = '<option value="">Selecione um horário</option>';
+
+    const horaInicial = 9;
+    const horaFinal = 20;
+
+    for (let hora = horaInicial; hora <= horaFinal; hora++) {
+      for (let minuto of [0, 30]) {
+        if (hora === horaFinal && minuto > 0) break; // evita 20:30
+        const h = hora.toString().padStart(2, '0');
+        const m = minuto.toString().padStart(2, '0');
+        const horario = `${h}:${m}`;
+        const option = document.createElement('option');
+        option.value = horario;
+        option.textContent = horario;
+        timeSelect.appendChild(option);
+      }
+    }
+  });
+</script>
 <div class="flex items-start">
 <input class="mt-1 mr-2" id="terms" name="terms" required="" type="checkbox"/>
 <label class="text-sm" for="terms">Concordo com os <a class="text-accent hover:underline" href="#">Termos de Serviço</a> e <a class="text-accent hover:underline" href="#">Política de Privacidade</a> *</label>
