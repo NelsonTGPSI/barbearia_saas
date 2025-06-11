@@ -3,7 +3,6 @@ from flask_session import Session
 import psycopg2
 import os
 import traceback
-
 # Carregar configurações via variáveis de ambiente
 config = {
     "admin_user": os.environ.get("ADMIN_USER", "NELSONBSEBASTIAO0"),
